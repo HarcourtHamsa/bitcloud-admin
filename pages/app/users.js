@@ -57,14 +57,18 @@ function Users() {
   return (
     <div>
       <DashboardWrapper>
+        <Text fontSize="2xl" mb={4}>
+          Users Information
+        </Text>
+
         {loading ? (
-          <Text textAlign="center" color="white" my={6}>
+          <Text textAlign="center" color="black" my={6}>
             Fetching data...
           </Text>
         ) : (
           <TableContainer>
-            <Table variant="unstyled" color="white">
-              <Thead>
+            <Table variant="striped" color="black">
+              <Thead bg="yellow.400" textTransform="capitalize">
                 <Tr>
                   <Th>First Name</Th>
                   <Th>Last Name</Th>
@@ -72,11 +76,12 @@ function Users() {
                   <Th isNumeric>Invested</Th>
                   <Th isNumeric>Balance</Th>
                   <Th>Edit</Th>
+                  <Th>Tx</Th>
                   <Th>Delete</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                {users.map((user) => {
+                {users?.map((user) => {
                   return (
                     <Tr key={Math.random()}>
                       <Td>{user?.firstName}</Td>
@@ -86,8 +91,9 @@ function Users() {
                       <Td isNumeric>{user?.balance}</Td>
                       <Td>
                         <Button
-                          bg={"blue.400"}
-                          color={"white"}
+                          bg={"yellow.400"}
+                          rounded={0}
+                          color={"black"}
                           fontWeight="normal"
                           onClick={() => {
                             router.push(
@@ -102,24 +108,43 @@ function Users() {
                           }}
                           size="sm"
                           mt={0}
-                          _hover={{
-                            bg: "blue.500",
-                          }}
                         >
                           Edit
                         </Button>
                       </Td>
                       <Td>
                         <Button
-                          bg={"red.400"}
-                          color={"white"}
+                          bg={"yellow.400"}
+                          rounded={0}
+                          color={"black"}
+                          fontWeight="normal"
+                          onClick={() => {
+                            router.push(
+                              {
+                                pathname: `/app/history`,
+                                query: {
+                                  ...user,
+                                },
+                              },
+                              "app/history"
+                            );
+                          }}
+                          size="sm"
+                          mt={0}
+                        >
+                          Tx
+                        </Button>
+                      </Td>
+                      <Td>
+                        <Button
+                          colorScheme={"red"}
+                          variant="ghost"
+                          rounded={0}
+                          // color={"red"}
                           fontWeight="normal"
                           size="sm"
                           onClick={() => deleteUser(user?.email)}
                           mt={0}
-                          _hover={{
-                            bg: "red.500",
-                          }}
                         >
                           Delete
                         </Button>
@@ -155,7 +180,7 @@ function Users() {
         </ModalContent>
       </Modal>
 
-      <FloatingButton />
+      {/* <FloatingButton /> */}
     </div>
   );
 }

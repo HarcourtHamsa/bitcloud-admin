@@ -75,7 +75,7 @@ function User() {
           minH={"100vh"}
           align={"center"}
           justify={"center"}
-          bg={useColorModeValue("#131722", "gray.800")}
+          bg={useColorModeValue("transparent", "gray.800")}
         >
           <ToastContainer />
 
@@ -84,7 +84,7 @@ function User() {
               <Avatar size={"lg"} />
             </Stack>
             <Box
-              rounded={"md"}
+              rounded={"0"}
               bg={useColorModeValue("white", "gray.700")}
               // boxShadow={"lg"}
               w={{ base: "100%", md: "100%" }}
@@ -216,17 +216,14 @@ function User() {
                   </FormControl>
                   <Stack spacing={10}>
                     <Button
-                      bg={"blue.400"}
-                      color={"white"}
+                      colorScheme={"yellow"}
                       fontWeight="normal"
                       type="submit"
                       mt={6}
                       p={6}
                       isLoading={isLoading}
+                      rounded={0}
                       // h={10}
-                      _hover={{
-                        bg: "blue.500",
-                      }}
                     >
                       Save Changes
                     </Button>
@@ -238,7 +235,7 @@ function User() {
         </Flex>
       </DashboardWrapper>
 
-      <FloatingButton />
+      {/* <FloatingButton /> */}
     </div>
   );
 }

@@ -65,7 +65,7 @@ export default function Footer() {
               <SiEclipseche size={35} color="#4299e1" />
             </Box>
             <Text fontSize={"sm"}>
-              © 2022 Expert Hub Trade . All rights reserved
+              © 2022 Legit Crypto Option . All rights reserved
             </Text>
             <Stack direction={"row"} spacing={6}>
               <SocialButton label={"Twitter"} href={"#"}>

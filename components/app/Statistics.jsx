@@ -21,11 +21,11 @@ function StatsCard(props) {
     <Stat
       px={{ base: 2, md: 4 }}
       py={"5"}
-      shadow={"xl"}
+      // shadow={"xl"}
       //   border={"1px solid"}
       borderColor={useColorModeValue("gray.800", "gray.500")}
-      rounded={"lg"}
-      bg="#575962"
+      rounded={"md"}
+      bg="black"
       color="white"
     >
       <Flex justifyContent={"space-between"}>
@@ -68,12 +68,12 @@ export default function Statistics() {
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
         <StatsCard
           title={"Total Users"}
-          stat={`${users.length}`}
+          stat={`${users?.length}`}
           icon={<BsPeopleFill size={"3em"} color="white" />}
         />
         <StatsCard
           title={"Total Amount Invested"}
-          stat={`$10274.00`}
+          stat={`$0`}
           icon={<BsCoin size={"3em"} color="white" />}
         />
         <StatsCard

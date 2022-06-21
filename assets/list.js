@@ -6,3 +6,4 @@ export const bitcoin = require("./images/bitcoin.png");
 export const ethereum = require("./images/ethereum.png");
 export const laptop = require("./images/laptop-png-6759.png");
 export const pattern = require("./images/wavyLines.png");
+export const logo = require('./images/logo.svg')

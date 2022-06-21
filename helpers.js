@@ -1,15 +1,14 @@
 import axios from "axios";
-
+axios.defaults.baseURL = "https://radiant-savannah-73457.herokuapp.com/";
+//
 const helpers = {};
 
 helpers.login = async (data) => {
   try {
-    const res = await axios
-      .post("https://radiant-savannah-73457.herokuapp.com/auth/login", data)
-      .then((v) => {
-        console.log(v);
-        return v;
-      });
+    const res = await axios.post("auth/login", data).then((v) => {
+      console.log(v);
+      return v;
+    });
 
     return res;
   } catch (error) {
@@ -34,7 +33,7 @@ helpers.getUserDetailsFromLocalStorage = () => {
 helpers.register = async (data) => {
   try {
     const res = await axios
-      .post("https://radiant-savannah-73457.herokuapp.com/users", data)
+      .post("users", data)
       .then((v) => {
         return v;
       })
@@ -51,7 +50,7 @@ helpers.register = async (data) => {
 helpers.getAllUsers = async () => {
   try {
     const res = await axios
-      .get("https://radiant-savannah-73457.herokuapp.com/users")
+      .get("users")
       .then((v) => {
         return v;
       })
@@ -68,7 +67,7 @@ helpers.getAllUsers = async () => {
 helpers.updateUser = async (data) => {
   try {
     const res = await axios
-      .put(`https://radiant-savannah-73457.herokuapp.com/users/${data.email}/edit`, data)
+      .put(`users/${data.email}/edit`, data)
       .then((v) => {
         return v;
       })
@@ -85,7 +84,24 @@ helpers.updateUser = async (data) => {
 helpers.deleteUser = async (email) => {
   try {
     const res = await axios
-      .delete(`https://radiant-savannah-73457.herokuapp.com/users/${email}/delete`)
+      .delete(`users/${email}/delete`)
+      .then((v) => {
+        return v;
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
+helpers.getTransactions = async (_id) => {
+  try {
+    const res = await axios
+      .get(`/transactions/${_id}`)
       .then((v) => {
         return v;
       })

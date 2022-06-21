@@ -24,17 +24,17 @@ function Index() {
           pt={5}
           px={{ base: 2, sm: 12, md: 17 }}
         >
-          <Ticker colorTheme="dark"></Ticker>
+          <Ticker colorTheme="light"></Ticker>
 
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 5, lg: 8 }}>
             <EconomicCalendar
-              colorTheme="dark"
+              colorTheme="light"
               height={400}
               width="100%"
             ></EconomicCalendar>
 
             <TechnicalAnalysis
-              colorTheme="dark"
+              colorTheme="light"
               width="100%"
             ></TechnicalAnalysis>
           </SimpleGrid>
@@ -43,7 +43,7 @@ function Index() {
 
       {/* <TradingView.Ticker widgetProps={{ theme: "dark" }} /> */}
 
-      <FloatingButton />
+      {/* <FloatingButton /> */}
     </div>
   );
 }

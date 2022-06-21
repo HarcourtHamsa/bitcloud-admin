@@ -24,6 +24,9 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 
+import Image from "next/image";
+import { logo } from "../../assets/list";
+
 import NextLink from "next/link";
 
 import {
@@ -37,20 +40,20 @@ import {
 import { IconType } from "react-icons";
 import { ReactText } from "react";
 
-import { SiEclipseche } from "react-icons/si";
-import { BiHomeSmile } from "react-icons/bi";
+import { FiCodesandbox } from "react-icons/fi";
+import { BiUser, BiGridAlt, BiLogOut } from "react-icons/bi";
 import helpers from "../../helpers";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 
 const LinkItems = [
-  { name: "Home", icon: BiHomeSmile, href: "/app" },
-  { name: "Users", icon: FiUsers, href: "/app/users" },
+  { name: "Dashboard", href: "/app", icon: BiGridAlt },
+  { name: "Users", href: "/app/users", icon: BiUser },
 ];
 
 export default function DashboardWrapper({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("#131722", "gray.900")}>
+    <Box minH="100vh" bg={useColorModeValue("gray.50", "gray.900")}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -73,16 +76,16 @@ export default function DashboardWrapper({ children }) {
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
-      •••••••
     </Box>
   );
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
+  const Router = useRouter();
   return (
     <Box
       transition="3s ease"
-      bg={useColorModeValue("#131722", "gray.900")}
+      bg={useColorModeValue("black", "gray.900")}
       color="white"
       borderRightWidth="thin"
       borderRightColor="gray.700"
@@ -92,7 +95,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <SiEclipseche size={40} color="#4299e1" />
+        <Image src={logo} alt="" />
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -100,6 +103,31 @@ const SidebarContent = ({ onClose, ...rest }) => {
           {link.name}
         </NavItem>
       ))}
+
+      <Flex
+        onClick={() => {
+          helpers.logout();
+          return Router.push("/");
+        }}
+        align="center"
+        p="4"
+        mx="4"
+        role="group"
+        cursor="pointer"
+        _hover={{
+          color: "yellow.400",
+        }}
+      >
+        <Icon
+          mr="4"
+          fontSize="25"
+          _groupHover={{
+            color: "yellow.400",
+          }}
+          as={BiLogOut}
+        />
+        Log out
+      </Flex>
     </Box>
   );
 };
@@ -118,7 +146,7 @@ const NavItem = ({ icon, children, link, ...rest }) => {
         role="group"
         cursor="pointer"
         _hover={{
-          color: "blue.400",
+          color: "yellow.400",
         }}
         {...rest}
       >
@@ -127,7 +155,7 @@ const NavItem = ({ icon, children, link, ...rest }) => {
             mr="4"
             fontSize="25"
             _groupHover={{
-              color: "blue.400",
+              color: "yellow.400",
             }}
             as={icon}
           />
@@ -152,8 +180,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"
-      shadow="lg"
-      bg={useColorModeValue("blue.400", "gray.900")}
+      bg={useColorModeValue("yellow.400", "gray.900")}
       justifyContent={{ base: "space-between", md: "flex-end" }}
       {...rest}
     >
@@ -165,15 +192,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
         icon={<FiMenu size={25} color="white" />}
       />
 
-      <SiEclipseche size={40} color="white" />
-
       <HStack spacing={{ base: "0", md: "6" }}>
-        <IconButton
-          size="lg"
-          variant="ghost"
-          aria-label="open menu"
-          icon={<FiBell size={25} color="white" />}
-        />
         <Flex alignItems={"center"}>
           <Menu>
             <MenuButton
@@ -189,15 +208,13 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm" color="white">
+                  <Text fontSize="sm">
                     {user?.firstName} {user?.lastName}
                   </Text>
-                  <Text fontSize="xs" color="white">
-                    Admin
-                  </Text>
+                  <Text fontSize="xs">Admin</Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
-                  <FiChevronDown color="white" />
+                  <FiChevronDown color="black" />
                 </Box>
               </HStack>
             </MenuButton>

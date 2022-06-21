@@ -151,7 +151,7 @@ export default function Testimonials() {
             <chakra.strong color={useColorModeValue("gray.700", "gray.50")}>
               13,000+
             </chakra.strong>{" "}
-            People use Expert Hub Trade to grow their wealth
+            People use Legit Crypto Option to grow their wealth
           </chakra.h2>
         </Box>
         <SimpleGrid
