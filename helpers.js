@@ -1,6 +1,6 @@
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:8080/";
-//https://radiant-savannah-73457.herokuapp.com/
+axios.defaults.baseURL = "https://radiant-savannah-73457.herokuapp.com/";
+//
 const helpers = {};
 
 helpers.login = async (data) => {
