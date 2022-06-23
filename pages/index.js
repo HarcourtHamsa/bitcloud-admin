@@ -146,7 +146,7 @@ export default function Login() {
                   </Button>
                 </Stack>
                 <br />
-                <Link color={"yellow.400"}>Forgot password?</Link>
+                <Link color={"yellow.400"} href="/forgot-password">Forgot password?</Link>
               </Stack>
             </form>
           </Box>

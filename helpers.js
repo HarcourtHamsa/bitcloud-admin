@@ -1,6 +1,6 @@
 import axios from "axios";
-axios.defaults.baseURL = "https://radiant-savannah-73457.herokuapp.com/";
-//
+axios.defaults.baseURL = "http://localhost:8080/";
+//https://radiant-savannah-73457.herokuapp.com/
 const helpers = {};
 
 helpers.login = async (data) => {
@@ -64,10 +64,13 @@ helpers.getAllUsers = async () => {
   }
 };
 
-helpers.updateUser = async (data) => {
+helpers.updateUser = async (data, query) => {
+  console.log("helpers query: ", query);
+  console.log("helpers data: ", data);
+
   try {
     const res = await axios
-      .put(`users/${data.email}/edit`, data)
+      .put(`users/${query}/edit`, data)
       .then((v) => {
         return v;
       })
@@ -106,6 +109,25 @@ helpers.getTransactions = async (_id) => {
         return v;
       })
       .catch((error) => {
+        return error;
+      });
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
+helpers.forgotPassword = async (email) => {
+  console.log("email from helpers.js", email);
+  try {
+    const res = await axios
+      .post(`users/forgot-password`, { email: email })
+      .then((v) => {
+        return v;
+      })
+      .catch((error) => {
+        // console.log("error gan gan", error);
         return error;
       });
 

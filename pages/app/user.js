@@ -52,11 +52,11 @@ function User() {
 
       try {
         console.log(values);
-        const res = await helpers.updateUser(values).then((data) => {
+        const res = await helpers.updateUser(values, query.email).then((data) => {
           if (data.name === "AxiosError") {
             notify("Oops something went wrong", "error");
           } else {
-            notify("Changes updated!", "success");
+            notify("Success: Changes updated!", "success");
             router.push("/app/users");
           }
         });
