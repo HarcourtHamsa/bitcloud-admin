@@ -22,6 +22,7 @@ import helpers from "../../helpers";
 
 function User() {
   const { query } = useRouter();
+  console.log(query);
 
   const [isLoading, setIsLoading] = React.useState(false);
   const router = useRouter();
@@ -45,6 +46,7 @@ function User() {
       profit: query.profit,
       referalBonus: query.referalBonus,
       verified: query.verified,
+      isDisabled: query.isDisabled,
     },
 
     onSubmit: async (values) => {
@@ -52,14 +54,16 @@ function User() {
 
       try {
         console.log(values);
-        const res = await helpers.updateUser(values, query.email).then((data) => {
-          if (data.name === "AxiosError") {
-            notify("Oops something went wrong", "error");
-          } else {
-            notify("Success: Changes updated!", "success");
-            router.push("/app/users");
-          }
-        });
+        const res = await helpers
+          .updateUser(values, query.email)
+          .then((data) => {
+            if (data.name === "AxiosError") {
+              notify("Oops something went wrong", "error");
+            } else {
+              notify("Success: Changes updated!", "success");
+              router.push("/app/users");
+            }
+          });
       } catch (error) {
         console.log(error);
       } finally {

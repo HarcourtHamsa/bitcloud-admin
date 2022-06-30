@@ -1,5 +1,9 @@
 import axios from "axios";
-axios.defaults.baseURL = "https://radiant-savannah-73457.herokuapp.com/";
+const environment = {
+  prod: "https://radiant-savannah-73457.herokuapp.com/",
+  dev: 'http://localhost:8080/',
+};
+axios.defaults.baseURL = environment.prod;
 //
 const helpers = {};
 
@@ -88,6 +92,40 @@ helpers.deleteUser = async (email) => {
   try {
     const res = await axios
       .delete(`users/${email}/delete`)
+      .then((v) => {
+        return v;
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
+helpers.blockUser = async (email) => {
+  try {
+    const res = await axios
+      .post(`users/${email}/block`)
+      .then((v) => {
+        return v;
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
+helpers.unblockUser = async (email) => {
+  try {
+    const res = await axios
+      .post(`users/${email}/unblock`)
       .then((v) => {
         return v;
       })

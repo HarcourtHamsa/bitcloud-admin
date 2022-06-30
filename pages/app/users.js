@@ -39,6 +39,22 @@ function Users() {
       .catch((error) => console.log(error));
   };
 
+  const blockUser = async (email) => {
+    console.log("blocking email", email);
+    await helpers
+      .blockUser(email)
+      .then(() => router.push("/app"))
+      .catch((error) => console.log(error));
+  };
+
+  const unblockUser = async (email) => {
+    console.log("unblocking email", email);
+    await helpers
+      .unblockUser(email)
+      .then(() => router.push("/app"))
+      .catch((error) => console.log(error));
+  };
+
   React.useEffect(() => {
     setLoading(true);
 
@@ -82,6 +98,7 @@ function Users() {
               </Thead>
               <Tbody>
                 {users?.map((user) => {
+                  console.log(user.isDisabled);
                   return (
                     <Tr key={Math.random()}>
                       <Td>{user?.firstName}</Td>
@@ -136,6 +153,24 @@ function Users() {
                         </Button>
                       </Td>
                       <Td>
+                        <Button
+                          colorScheme={"yellow"}
+                          variant="ghost"
+                          rounded={0}
+                          // color={"red"}
+                          fontWeight="normal"
+                          size="sm"
+                          onClick={() =>
+                            new Boolean(user?.isDisabled) == true
+                              ? unblockUser(user?.email)
+                              : blockUser(user?.email)
+                          }
+                          mt={0}
+                        >
+                          {new Boolean(user?.isDisabled) == true
+                            ? "Unblock"
+                            : "Block"}
+                        </Button>
                         <Button
                           colorScheme={"red"}
                           variant="ghost"
